@@ -1,11 +1,23 @@
 clear
 clc
 
-f=@(x) exp(x);
-a=1;
-b=3;
-n=8;
+f=@(x) exp(x); #Definição da função
+valor_aceito = false; #Variavel de apoio para verificar se a entrada do usuario foi aceita
 
+a=input("Digite o valor INFERIOR da integração: ");
+b=input("Digite o valor SUPERIOR da integração: ");
+n=input("Digite a quantidade de divisões que deve ser feito: ");
+
+#Verificação se o valor digitado para n é valido
+while(valor_aceito==false) #Enquanto o valor não for válido, o programa exibira um erro e ira pedir uma nova entrada
+  if (mod(n,2)!=0)
+    n=input("Valor de divisões inválido, digite um valor múltiplo de 2: ");
+  else
+    valor_aceito=true;
+  endif
+endwhile
+
+#Calculo do h e tabelamento x,y
 h = (b-a)/n;
 vx = a:h:b;
 vy=f(vx);
